@@ -1,0 +1,7 @@
+QA testing complete for 2026-09-05
+Project: dedalo
+Build: ✅ API tsc + Angular production (pnpm)
+Tests: 15/15 passing (Jest API)
+New tests: existing coverage adequate
+Issues: 0 graves (dark hover AA fixed in QA)
+Published: ✅ Caddy (dedalo.proyectos.cristiancode.dev :3085), ✅ Portfolio (es.ts+en.ts+pt.ts heading-267), ✅ GitHub, ✅ Landing, ✅ Excel row 102
