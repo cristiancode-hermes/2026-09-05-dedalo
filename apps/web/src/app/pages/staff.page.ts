@@ -44,6 +44,10 @@ import { DailyPoint, RunItem, humanizeApiError, madridAt, statusLabel, timer } f
           <svg class="chart" viewBox="0 0 640 240" role="img" aria-label="Carreras por día">
             <line x1="48" y1="16" x2="48" y2="200" stroke="currentColor" />
             <line x1="48" y1="200" x2="620" y2="200" stroke="currentColor" />
+            @for (g of yTicks(); track g.label) {
+              <line [attr.x1]="48" [attr.y1]="g.y" x2="620" [attr.y2]="g.y" stroke="currentColor" opacity="0.18" />
+              <text x="8" [attr.y]="g.y + 4" font-size="11">{{ g.label }}</text>
+            }
             @for (p of bars(); track p.date) {
               <rect
                 [attr.x]="p.x"
@@ -54,10 +58,10 @@ import { DailyPoint, RunItem, humanizeApiError, madridAt, statusLabel, timer } f
               >
                 <title>{{ p.date }} · {{ p.count }} carreras</title>
               </rect>
-              <text [attr.x]="p.x + p.w / 2" y="216" text-anchor="middle" font-size="10">{{ p.label }}</text>
+              @if (p.showLabel) {
+                <text [attr.x]="p.x + p.w / 2" y="216" text-anchor="middle" font-size="10">{{ p.label }}</text>
+              }
             }
-            <text x="8" y="24" font-size="11">{{ maxCount() }}</text>
-            <text x="8" y="200" font-size="11">0</text>
           </svg>
         }
       </section>
@@ -75,7 +79,8 @@ export class StaffPage implements OnInit {
   readonly statusLabel = statusLabel;
 
   readonly maxCount = signal(1);
-  readonly bars = signal<Array<{ date: string; count: number; x: number; y: number; w: number; h: number; label: string }>>([]);
+  readonly yTicks = signal<Array<{ y: number; label: string }>>([]);
+  readonly bars = signal<Array<{ date: string; count: number; x: number; y: number; w: number; h: number; label: string; showLabel: boolean }>>([]);
 
   ngOnInit(): void {
     this.api.daily().subscribe({
@@ -83,6 +88,12 @@ export class StaffPage implements OnInit {
         this.daily.set(rows);
         const max = Math.max(1, ...rows.map((r) => r.count));
         this.maxCount.set(max);
+        this.yTicks.set(
+          [0.25, 0.5, 0.75, 1].map((f) => ({
+            y: 200 - f * 160,
+            label: String(Math.round(max * f)),
+          })),
+        );
         const w = 36;
         this.bars.set(
           rows.map((r, i) => ({
@@ -93,6 +104,7 @@ export class StaffPage implements OnInit {
             h: (r.count / max) * 160,
             y: 200 - (r.count / max) * 160,
             label: r.date.slice(8),
+            showLabel: i % 3 === 0,
           })),
         );
       },
