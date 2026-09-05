@@ -2,6 +2,7 @@ import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../core/auth.service';
+import { ThemeService } from '../core/theme.service';
 import { humanizeApiError } from '../shared/models';
 
 @Component({
@@ -9,6 +10,14 @@ import { humanizeApiError } from '../shared/models';
   imports: [FormsModule, RouterLink],
   template: `
     <div class="auth-minimal">
+      <button
+        class="theme-toggle"
+        type="button"
+        (click)="theme.toggle()"
+        [attr.aria-label]="theme.isDark() ? 'Activar tema claro' : 'Activar tema oscuro'"
+      >
+        {{ theme.isDark() ? '☀' : '☾' }}
+      </button>
       <p class="kicker">El hilo se sigue</p>
       <h1>Crear cuenta</h1>
       <form class="auth-form" (ngSubmit)="submit()">
@@ -35,6 +44,7 @@ import { humanizeApiError } from '../shared/models';
 })
 export class RegisterPage {
   readonly auth = inject(AuthService);
+  readonly theme = inject(ThemeService);
   private readonly router = inject(Router);
   readonly username = signal('');
   readonly email = signal('');

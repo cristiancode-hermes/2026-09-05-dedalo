@@ -36,9 +36,10 @@ import { humanizeApiError } from '../shared/models';
         <button class="btn btn-primary" type="submit" [disabled]="auth.loading()">Entrar</button>
         <p><a routerLink="/registro">Crear cuenta</a></p>
         <div class="auth-demo">
-          <p>Cuenta de prueba con datos</p>
+          <p>Cuenta de prueba</p>
           <p><code>demo@dedalo.dev</code> · <code>demo1234</code></p>
-          <p>Staff: <code>staff@dedalo.dev</code> · <code>demo1234</code></p>
+          <p>Staff</p>
+          <p><code>staff@dedalo.dev</code> · <code>demo1234</code></p>
         </div>
       </form>
     </div>

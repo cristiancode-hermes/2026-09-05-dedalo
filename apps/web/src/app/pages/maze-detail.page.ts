@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { ApiService } from '../core/api.service';
-import { MazeItem, money, timer } from '../shared/models';
+import { MazeItem, captionAside, money, timer } from '../shared/models';
 
 @Component({
   selector: 'app-maze-detail',
@@ -17,11 +17,11 @@ import { MazeItem, money, timer } from '../shared/models';
           <a class="btn btn-primary" routerLink="/laberintos">Volver a circuitos</a>
         </section>
       } @else if (maze(); as m) {
-        <p class="kicker">{{ m.slug }}</p>
+        <p class="kicker">{{ captionAside(m.caption, m.name) || 'Circuito' }}</p>
         <h1>{{ m.name }}</h1>
         <figure class="figure">
           <img [src]="m.photoUrl" [alt]="m.caption || m.name" />
-          <figcaption>{{ m.caption || m.name }}</figcaption>
+          <figcaption>{{ captionAside(m.caption, m.name) || m.name }}</figcaption>
         </figure>
         <p>{{ m.description }}</p>
         <p class="muted">Par {{ timer(m.parSec) }} · tope {{ m.durationMin }} min · {{ m.freeTeamsNow }} / {{ m.maxTeams }} equipos libres</p>
@@ -51,6 +51,7 @@ export class MazeDetailPage implements OnInit {
   readonly error = signal(false);
   readonly money = money;
   readonly timer = timer;
+  readonly captionAside = captionAside;
 
   ngOnInit(): void {
     const slug = this.route.snapshot.paramMap.get('slug') || '';

@@ -8,7 +8,7 @@ import { MazeItem, money } from '../shared/models';
   imports: [FormsModule],
   template: `
     <main class="wrap">
-      <p class="kicker">Admin</p>
+      <p class="kicker">Taller</p>
       <h1>Circuitos</h1>
       @if (!mazes().length) {
         <section class="state-screen">

@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ApiService } from '../core/api.service';
-import { MazeItem, money, timer } from '../shared/models';
+import { MazeItem, captionAside, money, timer } from '../shared/models';
 
 @Component({
   selector: 'app-mazes',
@@ -28,7 +28,9 @@ import { MazeItem, money, timer } from '../shared/models';
           @for (m of mazes(); track m.id) {
             <a class="card" [routerLink]="['/laberintos', m.slug]">
               <img [src]="m.photoUrl" [alt]="m.caption || m.name" />
-              <figcaption>{{ m.caption || m.name }}</figcaption>
+              @if (captionAside(m.caption, m.name); as aside) {
+                <figcaption>{{ aside }}</figcaption>
+              }
               <h3>{{ m.name }}</h3>
               <p class="muted">Par {{ timer(m.parSec) }} · {{ m.freeTeamsNow }} equipos libres</p>
               <p class="price">desde {{ money(m.fromPriceCents) }}</p>
@@ -46,6 +48,7 @@ export class MazesPage implements OnInit {
   readonly error = signal(false);
   readonly money = money;
   readonly timer = timer;
+  readonly captionAside = captionAside;
 
   ngOnInit(): void {
     this.load();

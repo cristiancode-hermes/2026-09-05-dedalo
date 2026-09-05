@@ -90,6 +90,14 @@ export interface DailyPoint {
   count: number;
 }
 
+export function captionAside(caption: string | null | undefined, name: string): string {
+  if (!caption) return '';
+  const dash = caption.split('—').map((s) => s.trim());
+  if (dash.length > 1 && dash[0] === name) return dash.slice(1).join(' — ');
+  if (caption === name) return '';
+  return caption;
+}
+
 export function money(cents: number): string {
   return (cents / 100).toLocaleString('es-ES', { style: 'currency', currency: 'EUR' });
 }

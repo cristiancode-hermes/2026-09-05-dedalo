@@ -18,7 +18,7 @@ import { MazeItem, humanizeApiError, money } from '../shared/models';
           <a class="btn btn-primary" routerLink="/laberintos">Circuitos</a>
         </section>
       } @else if (maze(); as m) {
-        <p class="kicker">Checkout</p>
+        <p class="kicker">Taquilla</p>
         <h1>{{ m.name }}</h1>
         <p class="muted">{{ m.freeTeamsNow }} equipos libres ahora. Sin retención: pagas y el dorsal sale.</p>
         <label class="form-field">

@@ -88,10 +88,11 @@ export class StaffPage implements OnInit {
         this.daily.set(rows);
         const max = Math.max(1, ...rows.map((r) => r.count));
         this.maxCount.set(max);
+        const unique = [...new Set([0, 0.25, 0.5, 0.75, 1].map((f) => Math.round(max * f)))];
         this.yTicks.set(
-          [0.25, 0.5, 0.75, 1].map((f) => ({
-            y: 200 - f * 160,
-            label: String(Math.round(max * f)),
+          unique.map((v) => ({
+            y: 200 - (v / max) * 160,
+            label: String(v),
           })),
         );
         const w = 36;

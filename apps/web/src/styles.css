@@ -136,11 +136,45 @@ a.card:hover:not(.btn) { color: var(--color-ink); text-decoration: none; }
   min-height: 44px; padding: 8px 10px; border: 1px solid var(--color-border);
   border-radius: 4px; background: var(--color-surface); color: var(--color-ink); font: inherit;
 }
-.form-field.underline input {
-  border: none; border-bottom: 1px solid var(--color-border); border-radius: 0; background: transparent;
+.form-field.underline {
+  gap: 2px;
+  margin-bottom: 12px;
 }
-.auth-minimal { max-width: 360px; margin: 0 auto; padding: 48px 24px; min-height: 100vh; }
+.form-field.underline input {
+  min-height: 36px;
+  padding: 4px 0 8px;
+  border: none;
+  border-bottom: 1px solid var(--color-border);
+  border-radius: 0;
+  background: transparent;
+  width: 100%;
+}
+.form-field.underline input:focus {
+  outline: none;
+  border-bottom-color: var(--color-primary);
+}
+.auth-minimal {
+  max-width: 360px;
+  margin: 0 auto;
+  padding: 72px 24px 48px;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+}
+.auth-minimal h1 { font-size: clamp(1.75rem, 5vw, 2.5rem); }
+.auth-minimal > .theme-toggle {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  z-index: 20;
+}
+.auth-form .btn { width: 100%; }
 .auth-demo { margin-top: 24px; padding: 12px; border: 1px dashed var(--color-border); background: var(--color-surface-2); border-radius: 8px; }
+.auth-demo p { max-width: none; }
+.auth-demo code { white-space: nowrap; }
+.run-list .timer { font-size: 1.5rem; }
 .cta-error { color: var(--color-danger); }
 .state-screen { padding: 48px 0; }
 .timeline { list-style: none; padding: 0; }

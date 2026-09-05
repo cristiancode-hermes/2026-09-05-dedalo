@@ -1,7 +1,7 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { ApiService } from '../core/api.service';
-import { MazeItem, money, timer } from '../shared/models';
+import { MazeItem, captionAside, money, timer } from '../shared/models';
 
 @Component({
   selector: 'app-home',
@@ -34,7 +34,7 @@ import { MazeItem, money, timer } from '../shared/models';
           </div>
           <figure class="figure featured">
             <img [src]="featured()!.photoUrl" [alt]="featured()!.caption || featured()!.name" />
-            <figcaption>{{ featured()!.caption || featured()!.name }}</figcaption>
+            <figcaption>{{ captionAside(featured()!.caption, featured()!.name) || featured()!.name }}</figcaption>
           </figure>
         </section>
         <section>
@@ -43,7 +43,9 @@ import { MazeItem, money, timer } from '../shared/models';
             @for (m of mazes(); track m.id) {
               <a class="card" [routerLink]="['/laberintos', m.slug]">
                 <img [src]="m.photoUrl" [alt]="m.caption || m.name" />
-                <figcaption>{{ m.caption || m.name }}</figcaption>
+                @if (captionAside(m.caption, m.name); as aside) {
+                  <figcaption>{{ aside }}</figcaption>
+                }
                 <h3>{{ m.name }}</h3>
                 <p class="muted">Par {{ timer(m.parSec) }} · {{ m.freeTeamsNow }} equipos libres</p>
                 <p class="price">desde {{ money(m.fromPriceCents) }}</p>
@@ -68,6 +70,7 @@ export class HomePage implements OnInit {
   readonly error = signal(false);
   readonly money = money;
   readonly timer = timer;
+  readonly captionAside = captionAside;
 
   ngOnInit(): void {
     this.load();
@@ -79,7 +82,7 @@ export class HomePage implements OnInit {
     this.api.mazes().subscribe({
       next: (rows) => {
         this.mazes.set(rows);
-        this.featured.set(rows[0] || null);
+        this.featured.set(rows.find((m) => m.slug === 'espejo-mayor') || rows[0] || null);
         this.loading.set(false);
       },
       error: () => {
