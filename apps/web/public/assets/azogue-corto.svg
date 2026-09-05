@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="Azogue corto">
+  <rect width="800" height="450" fill="#F4F5F7"/>
+  <rect x="60" y="60" width="680" height="330" fill="#E8EAEE"/>
+  <path d="M80 360 L200 120 L320 360" fill="none" stroke="#145C4E" stroke-width="14"/>
+  <path d="M320 360 L480 140 L640 360" fill="none" stroke="#B45309" stroke-width="14"/>
+  <circle cx="200" cy="120" r="18" fill="#3DA892"/>
+  <circle cx="480" cy="140" r="18" fill="#145C4E"/>
+  <rect x="620" y="300" width="70" height="60" fill="#14181F"/>
+</svg>

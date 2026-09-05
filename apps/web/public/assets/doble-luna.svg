@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="Cámaras de Doble luna">
+  <rect width="800" height="450" fill="#0E1216"/>
+  <ellipse cx="250" cy="225" rx="170" ry="150" fill="#171C22" stroke="#3DA892" stroke-width="6"/>
+  <ellipse cx="550" cy="225" rx="170" ry="150" fill="#171C22" stroke="#B45309" stroke-width="6"/>
+  <ellipse cx="250" cy="225" rx="70" ry="70" fill="#145C4E"/>
+  <ellipse cx="550" cy="225" rx="70" ry="70" fill="#3D4A55"/>
+  <rect x="380" y="200" width="40" height="50" fill="#E0A15A"/>
+</svg>

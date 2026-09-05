@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" role="img" aria-label="Pasillo de Espejo Mayor">
+  <rect width="800" height="450" fill="#1C232C"/>
+  <rect x="40" y="40" width="720" height="370" fill="#14181F"/>
+  <polygon points="80,400 400,80 720,400" fill="#2A333E"/>
+  <rect x="180" y="120" width="180" height="260" fill="#3DA892" opacity="0.35"/>
+  <rect x="440" y="120" width="180" height="260" fill="#145C4E" opacity="0.55"/>
+  <line x1="400" y1="80" x2="400" y2="400" stroke="#E0A15A" stroke-width="3"/>
+  <rect x="360" y="300" width="80" height="100" fill="#0E1216"/>
+  <rect x="372" y="320" width="56" height="70" fill="#3DA892" opacity="0.5"/>
+</svg>
